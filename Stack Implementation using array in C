@@ -1,0 +1,84 @@
+#include<stdio.h>
+#include<conio.h>
+#define SIZE 10
+int stack[SIZE],top=-1;
+
+void PUSH(int x)
+{
+ if(top==SIZE-1)
+ printf("STACK IS FULL\n");
+ else
+  { top++;
+    stack[top]=x;
+  }
+}
+
+void POP()
+{
+  int item;
+ if(top==-1)
+ printf("STACK IS EMPTY\n");
+ else
+  {
+    item=stack[top];
+    top--;
+  }
+}
+void PEAK()
+{
+  if(top==-1)
+  printf("STACK IS EMPTY");
+  else
+  printf("%d\n",stack[top]);
+}
+
+void display()
+{
+ int i;
+ if(top==-1)
+ printf("STACK IS EMPTY\n");
+ else
+   {
+    for(i=0; i<=top; i++)
+    printf("%d\n",stack[i]);
+   }
+}
+ void main()
+{
+  int choice,x;
+
+  printf("\npress 1 PUSH the data in a stack");
+  printf("\npress 2 POP the data in a stack ");
+  printf("\npress 3 To check the toppest element of the stack");
+  printf("\npress 4 TO display the stack data");
+  printf("\npress 4 FOR exit");
+  printf("\n\n");
+ while(1)
+ {
+   printf("Enter your choice: ");
+   scanf("%d",&choice);
+ switch(choice)
+  {
+   case 1: 
+     printf("Enter which data do u want to push: ");
+     scanf("%d",&x);
+     PUSH(x);
+     break;
+   case 2:
+     POP();
+     break;
+   case 3:
+     PEAK();
+     break;
+   case 4:
+     display();
+      break;
+   case 5:
+      exit(0);
+   default:
+      printf("INVALID CHOICE\n");
+  }
+  
+}
+getch();
+}
