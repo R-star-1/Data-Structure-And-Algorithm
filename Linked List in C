@@ -1,0 +1,102 @@
+#include<stdio.h>
+struct node
+{
+  int data;
+  struct node *next;
+};
+
+struct node *head=NULL,*newnode,*temp;
+ 
+void insert(int x)
+{
+  
+   newnode = (struct node*)malloc(sizeof(struct node));
+   newnode->data=x;
+   newnode->next=NULL;
+  if(head==NULL)
+  {
+    head=temp=newnode;
+  }
+  else 
+  {
+    temp->next=newnode;
+     temp=newnode;
+  }
+}
+
+void delete(void)
+{
+  struct node *prevnode;
+  if(head==0)
+   {
+     printf("LIST IS EMPTY\n");
+   }
+  else 
+   {
+    temp=head;
+     while(temp->next!=NULL)
+     {
+       prevnode=temp;
+       temp=temp->next;
+     }
+      prevnode->next=0;
+       free(temp);
+   }
+}
+ 
+void viewlist(void)
+{
+  if(head==NULL)
+   {
+     printf("LIST IS EMPTY\n");
+   }
+  else
+   {
+     temp=head;
+      while(temp->next!=NULL)
+       {
+         printf("%d ",temp->data);
+          temp=temp->next;
+       }
+    printf("%d \n",temp->data);
+   }
+
+}
+int main()
+{  
+   void insert(int x);
+   void delete(void);
+   void viewlist(void);
+   int x,choice;
+   
+    printf("PRESS 1 : FOR INSERT DATA IN THE LIST\n");
+    printf("PRESS 2 : FOR DELETE DATA IN THE LIST\n");
+    printf("PRESS 3 : FOR VIEW THE LIST\n");
+    printf("PRESS 4 : FOR EXIT\n");
+    
+    while(1)
+    {
+      printf("ENTER YOUR CHOICE\n");
+      scanf("%d",&choice);
+      switch(choice)
+       {
+         case 1 :          
+             printf("ENTER WHICH DATA U WANT TO INSERT\n");
+             scanf("%d",&x);
+             insert(x);
+              break;      
+         case 2 :
+             delete();
+              break;
+         case 3 :
+             viewlist();
+             break;
+         case 4 :
+             exit(0);
+         default :
+         printf("INVALID CHOICE\n");
+              
+       }
+    }
+    return 0;
+}
