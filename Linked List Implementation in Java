@@ -1,0 +1,45 @@
+class Node{
+	int data;
+	Node next;
+	Node(int data){
+		this.data= data;
+		next= null;
+	}
+}
+public class MyLinkedList {
+	Node head=null,temp;
+	public void addData(int x)
+	{
+		Node object= new Node(x);
+		if(head==null)
+		{
+			head= temp= object;
+		}else{
+			temp.next=object;
+			temp=object;
+			}	
+	}
+	public void getData(){
+		if(head==null){
+			System.out.println("list is empty");
+			}
+		else{
+			temp= head;
+			while(temp.next!=null)
+			    {
+			    System.out.print(temp.data+"->");
+			   	temp=temp.next;
+			    }
+			    System.out.print(temp.data);
+			}
+	}
+	
+	public static void main(String[] args) {
+		MyLinkedList mll = new MyLinkedList();
+		for(int i=1; i<=5; i++)
+		{
+			mll.addData(i);
+		}
+			mll.getData();
+	}
+}
