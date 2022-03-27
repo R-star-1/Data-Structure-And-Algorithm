@@ -1,0 +1,110 @@
+// Ritik kumar
+// InOrder Predecessor and InOrder Successor Implementation in java
+
+import  java.util.*;
+class Node{
+	int data;
+	Node left, right;
+    public Node(int data){
+		this.data = data;
+		left = null;
+		right = null;
+	}
+}
+public class Main {
+	
+	static Scanner sc = new Scanner(System.in);
+	
+	static Node createNode(){
+		Node root = null;
+		System.out.println(" enter a data: ");
+		int data = sc.nextInt();
+		if(data == -1){
+			return null;
+		}
+			root = new Node (data);
+			System.out.println(" enter a left data: " + data );
+			root.left = createNode();
+		
+			System.out.println(" enter a right data: " + data );
+			root.right= createNode();
+			return root;
+		
+	}
+	static int successor(Node root, int value ){
+		int val=-1;
+		while(root !=null){
+			if(root.data> value){
+				val = root.data;
+				root = root.left;
+			}else{
+				root = root.right;
+			}
+			
+		}
+		return val;
+	}
+	
+	static int predecessor(Node root, int value ){
+		int val=-1;
+		while(root !=null){
+			if(root.data < value){
+				val = root.data;
+				root = root.right;
+			}else{
+				root = root.left;
+			}
+			
+		}
+		return val;
+	}
+	
+	static void inOrder( Node root){
+		if(root==null) return ;
+		
+		else{
+			inOrder(root.left);
+			System.out.print(root.data+"  ");
+			inOrder(root.right);
+		}
+	}
+	
+	static void postOrder(Node root){
+		if(root==null) return ;
+		
+		else{
+			postOrder(root.left);
+			
+			postOrder(root.right);
+			System.out.print(root.data+"  ");
+		}
+	}
+	
+	static void preOrder(Node root){
+		if(root==null) return ;
+		
+		else{
+			System.out.print(root.data+"  ");
+			preOrder(root.left);
+			
+			preOrder(root.right);
+		}
+	}
+	
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		Node root = null;
+		int value = sc.nextInt();
+	    root = createNode();
+	    System.out.println(" in order is ");
+	    inOrder(root);
+	     System.out.println("\n pre order is ");
+	    preOrder(root);
+	     System.out.println(" \npost order is ");
+	    postOrder(root);
+System.out.println("successor is  "+successor(root, value ));		
+System.out.println("predecessor is  " +  predecessor(root, value ) );
+	   
+	}
+}
