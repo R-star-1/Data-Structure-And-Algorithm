@@ -1,0 +1,42 @@
+// *****************************
+
+// Ritik Kumar
+// 1901946
+// ritikkhanna079@gmail.com
+// String Matching Naive Algorithm
+
+// *****************************
+
+import java.util.*;
+public class Main {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		String s= sc.nextLine();
+		String p= sc.nextLine();
+		int i=0, j=0,flag=0;
+		while(i<s.length()){
+			if(s.charAt(i)==p.charAt(j)){
+				while( s.charAt(i)==p.charAt(j) ){
+					i++;
+					j++;
+					if(j==p.length()){
+						flag=1;
+						break;
+					}
+				}
+					if(flag==0){
+						j=0;
+					}else{
+						break;
+					}
+			}else{
+				i++;
+			}
+		}
+			if(flag==1){
+				System.out.println("match found");
+			}else{
+				System.out.println("not match found");
+			}
+	}
+}
