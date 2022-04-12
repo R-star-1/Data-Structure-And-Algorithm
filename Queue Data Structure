@@ -1,0 +1,90 @@
+// Ritik Kumar
+// ritikkhanna079@gmail.com
+// Queue Implementation in java by using linked list
+import java.util.*;
+class Node{
+	int data;
+	Node next;
+	Node(int x){
+		data=x;
+		next=null;
+	}
+}
+public class Main {
+	Node front=null, rear= null;
+	void enqueue(int x){
+			Node newnode= new Node(x);
+			if(front==null && rear==null){
+				front=rear=newnode;
+			}else {
+					rear.next= newnode;
+					rear=rear.next;
+			}
+	}
+	void dequeue(){
+			Node temp=null;
+			if(front==null && rear==null){
+				System.out.println("empty queue");
+			}else if(front==rear)
+			{
+				front=null;
+				rear=null;
+			} else {
+				temp=front;
+				front=front.next;
+				temp.next=null;
+			}
+	}
+	
+	void peek()
+	{
+			if(front==null && rear==null){
+				System.out.println("empty queue");
+			}else{
+				System.out.println(front.data);
+			}
+	}
+	void display(){
+			if(front==null && rear==null){
+				System.out.println("empty queue");
+			}else{
+				Node temp=front;
+				while(temp!=null){
+					System.out.println(temp.data);
+					temp=temp.next;
+				}
+			}
+	}
+	public static void main(String[] args) {
+			System.out.println("Press 1: For insert data ");
+			System.out.println("Press 2: For delete data ");
+			System.out.println("Press 3: For print data ");
+			System.out.println("Press 4: For peek ");
+			System.out.println("Press 5: For exit ");
+			System.out.println("Enter your choice");
+			Scanner sc =new Scanner(System.in);
+			Main obj= new Main();
+			while(true){
+				int ch = sc.nextInt();
+				switch(ch){
+					case 1:
+						System.out.println("enter data");
+						int data= sc.nextInt();
+						obj.enqueue(data);
+						break;
+					case 2:
+						obj.dequeue();
+						break;
+					case 3:
+						obj.display();
+						break;
+					case 4:
+						obj.peek();
+						break;						
+					case 5:
+						System.exit(0);
+					default:
+						System.out.println("invalid choice");	}
+			}						
+	}
+}
