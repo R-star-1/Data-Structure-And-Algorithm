@@ -1,0 +1,74 @@
+// ***********************
+
+// Ritik kumar
+// ritikkhanna079@gmail.com
+// BFS Traversal Of the Graph
+
+//************************
+
+import java.util.*;
+class Graph {
+    
+    // Function used to add Edge in Between Nodes
+    
+    public static void addEdge(int u, int v, ArrayList<ArrayList<Integer>> arrlist){
+        arrlist.get(u).add(v);
+        arrlist.get(v).add(u);
+    }
+    
+    // This Function is used to print the Graph
+    
+    public static void PrintGraph(ArrayList<ArrayList<Integer>> arrlist){
+        for(int i=0; i<arrlist.size(); i++){
+            System.out.print(i+ "->");
+            for(int j=0; j<arrlist.get(i).size(); j++){
+                System.out.print(arrlist.get(i).get(j)+ ", ");
+            }
+            System.out.println();
+        }
+    }
+    
+    public static void BFS_Traversal(ArrayList<ArrayList<Integer>> arrlist){
+        HashMap<Integer, Boolean> Traveral  = new HashMap<>();
+        for(int i=0 ; i<arrlist.size(); i++){
+            Traveral.put(i, false);
+        }
+        Queue<Integer> queue = new PriorityQueue<>();
+        queue.add(0);
+        Traveral.put(0,true);
+        while(!queue.isEmpty()){
+            int removedata = queue.remove();
+            System.out.println(removedata+ ", ");
+            for(int j=0; j<arrlist.get(removedata).size(); j++){
+                int value = arrlist.get(removedata).get(j);
+                if(!Traveral.get(value)){
+                    queue.add(value);
+                    Traveral.put(value, true);
+                }
+            }
+        }
+    }
+    public static void main(String[] args) {
+      
+      Scanner sc= new Scanner(System.in);
+      System.out.println("Enter a No of vertex and edges  ");
+      int V= sc.nextInt();
+      int E= sc.nextInt();
+      
+      ArrayList<ArrayList<Integer>> arrlist= new ArrayList<>();  // Creation of the 2d ArrayList
+      
+      for(int i=0; i<V; i++){
+          arrlist.add(new ArrayList<>());
+      }    
+          for(int i=0; i<E; i++){
+              int u= sc.nextInt();   // First Node in which edge should be form 
+              int v= sc.nextInt();   // second Node in which edge should be form 
+              
+              addEdge(u, v, arrlist);
+          }
+        PrintGraph(arrlist);
+        
+        // THIS PRINT THE ENTIRE BFS TRAVERSAL OF THE GRAPH
+        BFS_Traversal(arrlist);  // Passing an 2d arraylist of the graph implementation
+    }
+}
