@@ -72,3 +72,42 @@ class Graph {
         BFS_Traversal(arrlist);  // Passing an 2d arraylist of the graph implementation
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+// GEEKS FOR GEEKS SOLUTION
+
+class Solution {
+    // Function to return Breadth First Traversal of given graph.
+    public ArrayList<Integer> bfsOfGraph(int V, ArrayList<ArrayList<Integer>> adj) {
+        // Code here
+        // System.out.println(adj);
+        ArrayList<Integer> arr= new ArrayList<>();
+        int [] visited= new int[V];
+        Queue<Integer> queue = new LinkedList<>();
+        queue.add(0);
+        visited[0]=1;
+        
+        while(!queue.isEmpty()){
+            int deleted = queue.remove();
+            arr.add(deleted);
+            
+            for(int j=0; j<adj.get(deleted).size(); j++){
+                if(visited[adj.get(deleted).get(j)] != 1){
+                    queue.add(adj.get(deleted).get(j));
+                    visited[adj.get(deleted).get(j)]=1;
+                }
+            }
+        }
+        return arr;
+    }
+}
