@@ -1,0 +1,73 @@
+// ***********************
+
+// Ritik kumar
+// ritikkhanna079@gmail.com
+// Graph Implementation in java and its DFS Traversal
+
+//************************
+
+import java.util.*;
+class Graph {
+
+    // Function used to add Edge in Between Nodes
+
+    public static void addEdge(int u, int v, ArrayList<ArrayList<Integer>> arrlist){
+        arrlist.get(u).add(v);
+        arrlist.get(v).add(u);
+    }
+
+    // This Function is used to print the Graph
+    
+    // BFS TRAVERSAL FOR A CONNECTED GRAPH
+    public static void DFS_Traversal(ArrayList<ArrayList<Integer>> arrlist , int V){
+        Stack<Integer> stack = new Stack<>();
+        int[] visited= new int[V+1];
+        
+        // for(int i=0; i<V; i++){
+            stack.push(0);
+            visited[0]= 1;
+            
+            while(!stack.isEmpty()){
+                int pop= stack.pop();
+                System.out.print(pop+" -> ");
+                for(int j=0; j<arrlist.get(pop).size(); j++){
+                    if(visited[arrlist.get(pop).get(j)] != 1){
+                        stack.push(arrlist.get(pop).get(j));
+                        visited[arrlist.get(pop).get(j)] = 1;
+                    }
+                }
+            }
+        
+    }
+    public static void PrintGraph(ArrayList<ArrayList<Integer>> arrlist){
+        for(int i=0; i<arrlist.size(); i++){
+            System.out.print(i+ "->");
+            for(int j=0; j<arrlist.get(i).size(); j++){
+                System.out.print(arrlist.get(i).get(j)+ ", ");
+            }
+            System.out.println();
+        }
+    }
+    public static void main(String[] args) {
+
+      Scanner sc= new Scanner(System.in);
+      System.out.println("Enter a No of vertex and edges  ");
+      int V= sc.nextInt();
+      int E= sc.nextInt();
+
+      ArrayList<ArrayList<Integer>> arrlist= new ArrayList<>();  // Creation of the 2d ArrayList
+
+      for(int i=0; i<V; i++){
+          arrlist.add(new ArrayList<>());
+      }    
+          for(int i=0; i<E; i++){
+              int u= sc.nextInt();   // First Node in which edge should be form 
+              int v= sc.nextInt();   // second Node in which edge should be form 
+
+              addEdge(u, v, arrlist);
+          }
+        PrintGraph(arrlist);
+        
+        DFS_Traversal(arrlist, V);
+    }
+}
